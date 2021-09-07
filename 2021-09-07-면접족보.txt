@@ -74,22 +74,23 @@ int count = 0;
 천원: 1장
 오백원: 1개
 백원: 0개
-    int money = 126500;
-    
-		int m5 = (int)money/50000;
-		int m1 = (int)(money - (50000 * m5))/10000;
-		int c5 = (int)(money - (50000 * m5) - (10000 * m1))/5000;
-		int c1 = (int)(money - (50000 * m5) - (10000 * m1) - (5000 * c5))/1000;
-		int b5 = (int)(money - (50000 * m5) - (10000 * m1) - (5000 * c5) - (1000 * c1))/500;
-		int b1 = (int)(money - (50000 * m5) - (10000 * m1) - (5000 * c5) - (1000 * c1) - (500 * b5))/100;
-		
-		System.out.println("오만원 : " + m5 + "장");
-		System.out.println("만원 : " + m1 + "장");
-		System.out.println("오천원 : " + c5 + "장");
-		System.out.println("천원 : " + c1 + "장");
-		System.out.println("오백원 : " + b5 + "개");
-		System.out.println("백원 : " + b1 + "개");
+			int money = 126500;
 
+			int m5 = (int)money/50000;
+			int m1 = (int)(money % 50000)/10000;
+			int c5 = (int)(money % 10000)/5000;
+			int c1 = (int)(money % 5000)/1000;
+			int b5 = (int)(money % 1000)/500;
+			int b1 = (int)(money % 500)/100;
+			
+			System.out.println("오만원 : " + m5 + "장");
+			System.out.println("만원 : " + m1 + "장");
+			System.out.println("오천원 : " + c5 + "장");
+			System.out.println("천원 : " + c1 + "장");
+			System.out.println("오백원 : " + b5 + "개");
+			System.out.println("백원 : " + b1 + "개");
+
+		   
 
 
 11.아래를 프로그래밍 하시오.

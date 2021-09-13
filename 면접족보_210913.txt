@@ -33,6 +33,38 @@ public static void main(String[] args) {
 //출력
 LG에서 만든 2017년형 32인치 TV
 -----------------------------------------------------------------------------------------
+
+9. 남현씨 추가문제!
+
+2 또는 7을 약수로 갖는 숫자중 2021번째의 숫자를 출력하시오.
+ex. 10번째 숫자 = 18
+-----------------------------------------------------------------------------------------
+public class Extra {
+	private int num1;
+	private int num2 = 0;
+	private int count = 0;
+	
+	public Extra(int num) {
+		this.num1 = num;
+	}
+	public void getNum() {
+		for(int i = 1; true; i++) {
+			
+			num2 += 1;
+			
+			if((num2 % 2 == 0) || (num2 % 7 == 0)) {
+				count += 1;
+			}
+			
+			if (count == num1) {
+				System.out.println("2 또는 7을 약수로 갖는 수 중에 " + num1 + "번 째 수는 " + num2);
+				break;
+			}
+		}
+	}
+}
+
+-----------------------------------------------------------------------------------------
 public class TV {
 	private String company;
 	private int year, size;

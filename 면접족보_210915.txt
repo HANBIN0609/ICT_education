@@ -1,0 +1,174 @@
+1.아래의 사칙연산 계산기를 프로그래밍하시오.
+
+출력========================== 
+
+첫 번째 숫자를 입력하세요.
+90
+연산 기호를 입력하세요.
++
+두 번째 숫자를 입력하세요.
+65
+155
+종료하시겠습니까? 종료:y 계속:n
+n
+첫 번째 숫자를 입력하세요.
+90
+연산 기호를 입력하세요.
+-
+두 번째 숫자를 입력하세요.
+56
+34
+종료하시겠습니까? 종료:y 계속:n
+y
+종료입니다.
+--------------------------------------------------------------------------------
+import java.util.Scanner;
+public class Practice03 {
+
+	public static void main(String[] args) {
+		for(;true;) {
+			Scanner sc = new Scanner(System.in);
+			
+			System.out.println("첫 번째 숫자를 입력하세요.");
+			int num1 = sc.nextInt();
+			System.out.println(num1);
+			
+			System.out.println("연산 기호를 입력하세요.");
+			String cal = sc.next();
+			System.out.println(cal);
+			
+			System.out.println("두 번째 숫자를 입력하세요.");
+			int num2 = sc.nextInt();
+			System.out.println(num2);
+			
+			int sum = 0;
+			
+			if(cal.equals("+")) {
+				sum = num1 + num2;
+			} 
+			if(cal.equals("-")) {
+				sum = num1 - num2;
+			} 
+			if(cal.equals("*")) {
+				sum = num1 * num2;
+			} 
+			if(cal.equals("/")) {
+				sum = num1 / num2;
+			}
+			System.out.println(sum);
+			
+			System.out.println("종료하시겠습니까? 종료:y 계속:n");
+			String answer = sc.next();
+			
+			if(answer.equals("n")) {
+				continue;
+			}
+			if(answer.equals("y")) {
+				System.out.println("종료입니다.");
+				break;
+			}
+
+		}
+	}
+--------------------------------------------------------------------------------
+2.
+
+2. 랜덤 숫자 맞추기 게임을 짜시오.
+
+남은 횟수 : 10회 에서 시작
+
+1-100사이의 숫자 중에 숫자 맞추기
+
+//아래의 랜덤함수를 사용 할것
+(int)((Math.random()*100)+1); 
+
+==========================
+1~100 사이의 숫자를 입력하세요.
+남은 횟수 : 10
+50
+UP
+남은 횟수 : 9
+65
+UP
+남은 횟수 : 8
+80
+DOWN
+남은 횟수 : 7
+75
+DOWN
+남은 횟수 : 6
+73
+DOWN
+남은 횟수 : 5
+70
+UP
+남은 횟수 : 4
+71
+축하합니다. 7회 만에 맞추셨습니다.
+프로그램을 종료합니다.
+------------------------------------------------------------------------------
+import java.util.Scanner;
+public class Practice03 {
+
+	public static void main(String[] args) {
+		int life = 10;
+		int random = (int) (Math.random()*100+1);
+		System.out.println("1~100 사이의 숫자를 입력하세요.");
+		
+		for(int i = life; i > 0; i--) {
+			Scanner sc = new Scanner(System.in);
+					
+			System.out.println("남은 횟수 : " + i);
+			int num = sc.nextInt();
+			if(num > random) {
+				System.out.println("DOWN");
+				continue;
+			} else if (num < random) {
+				System.out.println("UP");
+				continue;
+			} else {
+				System.out.println("축하합니다. " + (10-i) + "회 만에 맞추셨습니다.");
+				System.out.println("프로그램을 종료합니다.");
+				break;
+			}
+			
+		}
+	}
+------------------------------------------------------------------------------
+3 . 아래와 같이 출력이 나오도록 프로그래밍 하시오.
+Player 객체를 완성하시오.
+
+main(){
+
+Player p1 = new Player()
+Player p2 = new Player()
+Player p3 = new Player()
+Player p4 = new Player()
+
+System.out.println(Player.instance);
+
+}
+
+출력:
+4
+
+
+
+4. static 변수의 다른 용어 3가지를 말해 보시오.
+ - 클래스 변수, 공유 변수, 정적 변수
+
+5. static 변수의 접근 방법은?
+ - 클래스 내부 : static 변수가 선언된 클래스 내에서 이름만으로 직접 접근 가능
+ - 클래스 외부 : 객체명 또는 클래스명으로 접근 가능
+	        접근 수준 지시자가 허용하는 범위 내에서 접근 가능
+	        private은 해당 클래스 내에서만 접근 가능
+
+6.. 클래스(static) 변수의 활용의 예를 드시오.
+ - 인스턴스 별로 가지고 있을 필요가 없는 변수를 클래스 변수로 선언함
+   ex) Math.sPI
+
+7. 스태틱 함수에 인스턴스 라면이 올수 없는 이유는?
+ - 메모리 생성시기가  static 항목이 인스턴스 항목보다 먼저이기 때문에 올 수 없다.
+
+8. 인스턴스 함수 안에 static 변수와 함수가 올 수 있는 이유는?
+ - 메모리 생성시기는 static 항목이 인스턴스 항목보다 먼저이기 때문에 올 수 있다.

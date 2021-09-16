@@ -1,0 +1,272 @@
+1. 메소드 오버로딩이란? 
+ - 같은 함수 이름으로 파라미터 타입과 개수를 다르게 해서 만드는 것.
+
+2. 생성자 오버로딩이란?
+ - 같은 생성자 이름으로 파라미터 타입과 개수를 다르게 해서 만드는 것.
+ 
+3. 메소드 오버로딩을 적용한 대표적인 함수는?
+ - println 함수
+
+4. this의 용도는?
+ - 인스턴스 변수에 대해 정확하게 접근하기 위해서 사용한다.
+
+5. this 함수에 대하여 설명하시오.
+ - 자기 자신의 생성자를 호출한다.  직접적으로 디폴트 생성자를 다른 생성자 내에 호출하면
+  컴파일 에러가 난다. 그렇기 때문에 this( );의 함수를 사용한다.
+
+6. 스트링 객체를 생성하는 2가지 방법은?
+ - " "로 직접 생성하거나, new String();으로 생성한다.
+
+7. 아래의 결과를 예측하고,이유를 설명하시오.
+
+String str1 = "Simple String"; 
+String str2 = "Simple String";
+
+String str3 = new String("Simple String");
+String str4 = new String("Simple String");
+
+//참조변수의 참조 값 비교
+if(str1 == str2)
+   System.out.println("str1과 str2는 동일 인스턴스 참조");
+else
+   System.out.println("str1과 str2는 다른 인스턴스 참조");
+
+//참조변수의 참조 값 비교
+if(str3 == str4)
+   System.out.println("str3과 str4는 동일 인스턴스 참조");
+else
+   System.out.println("str3과 str4는 다른 인스턴스 참조");
+
+>>>
+str1과 str2는 동일 인스턴스 참조
+str3과 str4는 다른 인스턴스 참조
+- str1,str2는 컴파일러가 같은 문자열을 컴파일 해 동일한 값이 나오면 같은 주소값을 준다.
+ 그러나 str3,str4는 객체 생성을 하는 것이기 때문에 다른 주소값을 가져서 다르게 나온다.
+
+8. imutable 에 대하여 설명하시오.
+ - String은 한번 공간을 잡아놓게 되면 그 공간을 변경할 수 없다. String의 연산이 이뤄져도 원래 처음 잡아놨던 것은
+   그대로 남아있고 다른 공간을 잡아서 데이터를 복사해 넣으면서 연산을 진행한다. 이러한 이유에서 immutable의 
+   의미를 보면 원본 데이터를 함부로 바꿀 수 없다는 뜻에서 변하지 않는다는 뜻을 의미한다.
+
+
+9. 사용자로부터 받은 문자열(영문으로)에서 자음과 모음 개수를 계산하는 프로그램을 작성하라.
+(연속적이로 종료하시겠습니까 y 할때 까지 계속)
+----------------------------------------------------------------------------------------------
+class WordCount{
+	private int cons = 0;
+	private int vow = 0;
+	private String word;
+	
+	private void getWord() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("단어를 입력하세요.");
+		word = sc.nextLine();
+	}
+	
+	private void calculate() {
+		for(int i = 0; i < word.length(); i++) {
+			char ch = word.charAt(i);
+			if((ch=='a')||(ch=='e')||(ch=='i')||(ch=='o')||(ch=='u')){
+				vow++;
+			} else {
+				cons++;
+			}
+		}
+
+		System.out.println("자음 갯수 : " + cons);
+		System.out.println("모음 갯수 : " + vow);
+		cons = 0;
+		vow = 0;
+	}
+	
+	public void run() {
+		while(true) {
+			getWord();
+			calculate();
+			
+			Scanner sc = new Scanner(System.in);
+			System.out.println("종료하시겠습니까? 네:y");
+			String answer = sc.next();
+			if(answer.equals("y")||answer.equals("Y")) {
+				System.out.println("종료합니다.");
+				break;
+			}
+		}
+		
+	}
+}
+
+	
+
+
+public class StringPractice {
+
+	public static void main(String[] args) {
+		WordCount wc = new WordCount();
+		wc.run();
+	
+	}
+}
+----------------------------------------------------------------------------------------------
+
+10.사용자에게 받은 문자열을 역순으로 화면에 출력하는 프로그램을 작성하시오.
+
+입력:abcde
+출력:edcba
+----------------------------------------------------------------------------------------------
+
+import java.util.Scanner;
+
+class ReverseString{
+	private String string;
+	private int count;
+	private char lex;
+	
+	private void Input() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("입력 : ");
+		string = sc.nextLine();
+		count = string.length();
+		
+	}
+	
+	
+	private void printReverse() {
+		System.out.print("출력 : ");
+		for(int i = 0; i < count; i++) {
+			lex = string.charAt(count-i-1);
+			System.out.print(lex);
+		}
+		System.out.println();
+	}
+	
+	
+	public void show() {
+			Input();
+			printReverse();
+			
+	}
+		
+}
+
+public class PrintString {
+
+	public static void main(String[] args) {
+		ReverseString rs = new ReverseString();
+		
+		rs.show();
+		
+	}
+
+}
+----------------------------------------------------------------------------------------------
+
+11.2와 100 사이에 있는 모든 소수(prime number)를 찾아 출력하는 프로그램을 작성하라. 
+(주어진 정수 k를 2부터 k-1까지의 숫자로 나누어서 나머지가 0인 것이 하나라도 있으면 소수가 아니다.)
+----------------------------------------------------------------------------------------------
+import java.util.Scanner;
+
+class FindPrimeNumber{
+	private int k;
+	private boolean bool;
+	
+	public FindPrimeNumber() { //초기화
+		this.k = 0;
+		this.bool = false;
+	}
+	
+	private void input() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("입력 : ");
+		k = sc.nextInt();
+		
+		sc.close();
+	}
+	
+	private void findPrime() {
+		for(int i = 2; i <= k; i++) {
+			for(int j = 2; j <= i-1; j++) {
+				if(i%j==0) {
+					bool = true;
+					break;
+				}
+			}
+			if (bool == false) System.out.print(i + " ");
+			bool = false;
+		}
+	}
+	
+	public void run() {
+		input();
+		findPrime();
+	}
+}
+
+
+public class PrimeNumber {
+	public static void main(String[] args) {
+		FindPrimeNumber fpn = new FindPrimeNumber();
+		fpn.run();
+	}
+
+}
+
+----------------------------------------------------------------------------------------------
+*추가문제
+김예린
+아래와 같이 두 수를 입력받아 3과 6의 배수라면 두 수의 곱을 구하고 
+그렇지 않을 경우,  다시 입력을 받아 실행할 수 있도록  작성
+========================
+두 수를 입력하세요
+3 9
+3과(와) 9는(은) 3과 6의 배수가 아닙니다
+두 수를 입력하세요
+12 18
+12*18=216
+프로그램을 종료합니다.
+----------------------------------------------------------------------------------------------
+import java.util.Scanner;
+
+class GetNum{
+	private int num1,num2;
+	private int result;
+	private boolean bool = false;
+	
+	private void input() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("두 수를 입력하세요.");
+		num1 = sc.nextInt();
+		num2 = sc.nextInt();
+	}
+	
+	private void getResult() {
+		if((num1%3==0)&&(num1%6==0)&&(num2%3==0)&&(num2%6==0)) {
+			result = num1*num2;
+			System.out.println(num1 + " * " + num2 + " = " +result);
+			bool = true;
+		} else System.out.println(num1 + "과(와) "+ num2 + "는(은) 3과 6의 배수가 아닙니다.");
+	}
+	
+	public void run() {
+		while(true) {
+			input();
+			getResult();
+			if(bool == true) {
+				System.out.println("프로그램을 종료합니다.");
+				break;
+			}
+		}
+		
+	}
+}
+
+public class ExtraPractice {
+
+	public static void main(String[] args) {
+		GetNum getNum = new GetNum();
+		getNum.run();
+
+	}
+
+}
+----------------------------------------------------------------------------------------------
